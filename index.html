@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>OrçaFlex - Gerador de Orçamentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>OrçaFlex</h1>
+        <p>Seu gerador de orçamentos flexível e fácil de usar</p>
+    </header>
+    
+    <!-- Removido para evitar duplicação de nomes -->
+    <!-- <h1>Gerador de Orçamentos</h1> -->
+    
+    <!-- Contêiner Flexível para o Formulário e o Nome -->
+    <div class="form-wrapper">
+        <!-- Nome "Orçaflex" ao Lado do Formulário -->
+        <!-- Removido para evitar duplicação de nomes -->
+        
+        <!-- Formulário -->
+        <form id="invoice-form" class="form-container">
+            <!-- Campo para upload do logo -->
+            <label for="company-logo">Logo da Empresa:</label><br>
+            <input type="file" id="company-logo" name="companyLogo" accept="image/*"><br><br>
+
+            <!-- Novo campo: Nome da Empresa -->
+            <label for="company-name">Nome da Empresa:</label><br>
+            <input type="text" id="company-name" name="companyName" placeholder="Digite o nome da empresa"><br><br>
+
+            <!-- Novo campo: CNPJ -->
+            <label for="cnpj">CNPJ:</label><br>
+            <input type="text" id="cnpj" name="cnpj" placeholder="Digite o CNPJ"><br><br>
+
+            <!-- Novo campo: Endereço -->
+            <label for="company-address">Endereço:</label><br>
+            <input type="text" id="company-address" name="companyAddress" placeholder="Digite o endereço"><br><br>
+
+            <!-- Novo campo: Número do Documento -->
+            <label for="document-number">Número do Documento:</label><br>
+            <input type="text" id="document-number" name="documentNumber" placeholder="Digite o número do documento"><br><br>
+
+            <!-- Informações do Cliente -->
+            <label for="customer-name">Nome do Cliente:</label><br>
+            <input type="text" id="customer-name" name="customerName" placeholder="Digite o nome do cliente"><br><br>
+
+            <label for="customer-cnpj">CNPJ do Cliente:</label><br>
+            <input type="text" id="customer-cnpj" name="customerCNPJ" placeholder="Digite o CNPJ do cliente"><br><br>
+
+            <label for="customer-address">Endereço do Cliente:</label><br>
+            <input type="text" id="customer-address" name="customerAddress" placeholder="Digite o endereço do cliente"><br><br>
+
+            <!-- Data da emissão e validade -->
+            <label for="invoice-date">Data do Orçamento:</label><br>
+            <input type="date" id="invoice-date" name="invoiceDate"><br><br>
+
+            <label for="invoice-validity">Validade:</label><br>
+            <input type="text" id="invoice-validity" name="invoiceValidity" placeholder="Ex: 30 dias"><br><br>
+
+            <!-- Novo campo: Prazo de Entrega -->
+            <label for="delivery-deadline">Prazo de Entrega (dias):</label><br>
+            <input type="number" id="delivery-deadline" name="deliveryDeadline" min="1" placeholder="Digite o prazo de entrega"><br><br>
+
+            <!-- Campos para itens -->
+            <label for="item-description">Descrição do Item:</label><br>
+            <input type="text" id="item-description" name="itemDescription" placeholder="Descrição do item"><br><br>
+
+            <label for="item-quantity">Quantidade do Item:</label><br>
+            <input type="number" id="item-quantity" name="itemQuantity" placeholder="Quantidade"><br><br>
+
+            <label for="item-price">Preço do Item:</label><br>
+            <input type="number" id="item-price" name="itemPrice" step="0.01" placeholder="Preço unitário"><br><br>
+
+            <!-- Campos para condições de pagamento e observações -->
+            <label for="payment-terms">Condições de Pagamento:</label><br>
+            <input type="text" id="payment-terms" name="paymentTerms" placeholder="Ex: 50% na assinatura, 50% na entrega"><br><br>
+
+            <label for="invoice-notes">Observações:</label><br>
+            <textarea id="invoice-notes" name="invoiceNotes" placeholder="Observações adicionais"></textarea><br><br>
+
+            <!-- Botões -->
+            <button type="button" onclick="addItem()">Adicionar Item 📝</button><br><br>
+            <button type="button" onclick="generatePDF()">Gerar Orçamento em PDF 📄</button>
+        </form>
+        
+        <!-- Adicionar texto explicativo amigável -->
+        <div class="info-text">
+            <h2>Bem-vindo ao OrçaFlex!</h2>
+            <p>Use este gerador de orçamentos para criar propostas profissionais de forma rápida e fácil. Basta preencher os detalhes da sua empresa e do cliente, adicionar os itens necessários, e gerar um PDF do orçamento para enviar ao seu cliente.</p>
+        </div>
+    </div>
+
+    <!-- Adicionar seção para listar os itens adicionados -->
+    <div id="items-list">
+        <h2>Itens Adicionados</h2>
+        <table id="items-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Preço Unitário</th>
+                    <th>Total</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Itens serão inseridos aqui dinamicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="invoice-output" style="display: none;">
+        <!-- Invoice will be displayed here -->
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Adicionar rodapé com informações de crédito -->
+    <footer>    
+        <p>Contato: <a href="mailto:brunotulux20@gmail.com">brunotulux20@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/Kodjaoglanian" target="_blank">https://github.com/Kodjaoglanian</a></p>
+    </footer>
+</body>
+</html>
